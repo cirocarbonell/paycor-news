@@ -1,0 +1,17 @@
+#Versión
+ ->Angular 16.2.0
+
+
+#Comando para la ejecución localmente
+ ->npm install
+
+
+#Nota
+->Requisito (REQ3) 
+  2-El sistema detecta que no tiene conexión o recibe un error al invocar el
+    servicio de NYTimes. 
+
+    -Implemente la solución basada en (ng-connection-service) manteniendo a la escucha el sistema apuntado (https://www.nytimes.com/).
+
+  ->Realizo la nota de arriba por esto>
+    -(Para el fin de esta evaluación únicamente se debe consumir el servicio https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=<API_KEY> .)

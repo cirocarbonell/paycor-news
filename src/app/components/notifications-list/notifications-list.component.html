@@ -1,0 +1,33 @@
+
+<button mat-icon-button class="favorite-icon botton-badge" (click)="toggleBadgeVisibility()" aria-label="icon">
+    <mat-icon 
+    aria-hidden="false"
+    class="favorite-icon botton-badge"
+    mat-raised-button 
+    [matBadge]="notificationCount" 
+    [matBadgeHidden]="notificationCount === 0" 
+    matBadgeColor="warn">
+    notifications
+  </mat-icon>
+</button>
+
+<mat-card *ngIf="showNotifications" class="notification-panel">
+  <mat-card-header>
+    <mat-card-title class="custom-title">Notificaciones</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content class="notification-content">
+    <mat-list class="notification-list">
+      <mat-list-item *ngFor="let notification of notifications.slice().reverse(); let c = index">
+        <div mat-line class="notification-item">
+          <span class="notification-index">{{ c + 1 }}.</span>
+          <span class="notification-text">{{ notification.text }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  
+  <mat-card-actions >
+    <button *ngIf="notifications.length>0" mat-button class="custom-delete" color="warn" (click)="clearNotifications()">Borrar Todas</button>
+  </mat-card-actions>
+</mat-card>

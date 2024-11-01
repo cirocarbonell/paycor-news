@@ -1,0 +1,61 @@
+.botton-badge{
+    margin-right: 10px;
+}
+
+.notification-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .favorite-icon {
+    position: relative;
+  }
+
+  .custom-title{
+    padding-left: 70px;
+    color: black;
+   }
+  
+   .custom-delete{ margin-left: 85px;}
+
+  .notification-panel {
+    position: absolute;
+    top: 64px;
+    right: 13px;
+    width: 300px;
+    max-height: 60vh;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  .mat-card-title {
+    color: black;
+  }
+  
+  .notification-content {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .notification-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .notification-index {
+    font-weight: bold;
+    color: #9e9e9e;
+    margin-right: 8px;
+  }
+  
+  .notification-text {
+    color: #424242;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+  

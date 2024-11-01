@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    padding: 16px;
+    background-color: darkgrey;
+  }
+
+.panel-table {
+    width: 90%; 
+    max-width: 80%;
+    margin: 30px auto;
+  }
+
+.news-image {
+    width: 80px;
+    height: 80px;
+    border-radius:10px;
+    object-fit: cover;
+    padding-top: 4px;
+  }
+
+  .text-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: gray;
+    font-weight:300px;
+    font-style: italic;
+  }
+ 
