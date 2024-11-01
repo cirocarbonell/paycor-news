@@ -4,6 +4,7 @@
 
 #Comando para la ejecución localmente
  ->npm install
+ ->ng serve
 
 
 #Nota

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationArticle } from 'src/app/models/notification-article.interface';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-list',
@@ -24,29 +25,34 @@ import { NotificationArticle } from 'src/app/models/notification-article.interfa
     MatListModule,
   ],
 })
-export class NotificationsListComponent implements OnInit {
-  notificationCount: number = 0;
+export class NotificationsListComponent implements OnInit, OnDestroy {
+  public notificationCount: number = 0;
 
-  notifications: NotificationArticle[] = [];
+  public notifications: NotificationArticle[] = [];
 
   public showNotifications = false;
+
+  private destroy$ = new Subject<void>();
 
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    this.notificationService.getNotificationObservable().subscribe({
-      next: (data: NotificationArticle[]) => {
-        this.notifications = data;
+    this.notificationService
+      .getNotificationObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data: NotificationArticle[]) => {
+          this.notifications = data;
 
-        const unseenNotifications = data.filter(
-          (notification) => !notification.viewed
-        );
-        this.notificationCount = unseenNotifications.length;
-      },
-    });
+          const unseenNotifications = data.filter(
+            (notification) => !notification.viewed
+          );
+          this.notificationCount = unseenNotifications.length;
+        },
+      });
   }
 
-  toggleBadgeVisibility() {
+  public toggleBadgeVisibility() {
     this.showNotifications = !this.showNotifications;
     this.notificationService.setAllNotificationAsViews();
   }
@@ -69,5 +75,10 @@ export class NotificationsListComponent implements OnInit {
     if (this.showNotifications && !clickedInsidePanel && !clickedInsideButton) {
       this.showNotifications = !this.showNotifications;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
